@@ -1,12 +1,16 @@
 #!/usr/bin/env node
 
-var appRoot = process.env.APP_ROOT || '../src';
+"use strict";
+
+var ON_PRODUCTION = process.env.NODE_ENV === 'production';
+var APP_ROOT = process.env.MUCH_APP_ROOT || ON_PRODUCTION ? '../dist' : '../src';
+var PORT = process.env.MUCH_PORT || 3000;
 
 var debug = require('debug')('MuchYantoo');
-var app = require(appRoot + '/app');
+var app = require(APP_ROOT + '/app');
 
-app.set('port', process.env.PORT || 3030);
+app.set('port', PORT);
 
-var server = app.listen(app.get('port'), function() {
+var server = app.listen(app.get('port'), function () {
   debug('Express server listening on port ' + server.address().port);
 });
