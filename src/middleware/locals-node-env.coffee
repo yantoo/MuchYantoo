@@ -1,6 +1,6 @@
 "use strict"
 
-module.exports = (app) ->
+module.exports = (env) ->
   (req, res, next) ->
-    res.locals.node_env = app.get 'env'
+    res.locals.node_env = env
     next()

@@ -34,7 +34,8 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./middleware/locals-node-env')(app));
+app.use(require('./middleware/locals-node-env')(app.get('env')));
+app.use(require('./middleware/locals-version'));
 
 ///
 app.use(function (req, res, next) {
