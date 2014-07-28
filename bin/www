@@ -2,9 +2,14 @@
 
 "use strict";
 
+console.log("env: ", process.env);
+
 var ON_PRODUCTION = process.env.NODE_ENV === 'production';
 var APP_ROOT = process.env.MUCH_APP_ROOT || ON_PRODUCTION ? '../dist' : '../src';
 var PORT = process.env.MUCH_PORT || 3000;
+
+console.log("NODE_ENV: ", process.env.NODE_ENV);
+console.log("MUCH_PORT: ", process.env.MUCH_PORT);
 
 var debug = require('debug')('MuchYantoo');
 var app = require(APP_ROOT + '/app');
