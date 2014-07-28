@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/styles/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+    <!-- build:css /styles/style.min.css -->
+    <link rel='stylesheet/less' href='/styles/style.less'/>
+
+    <!-- less engine -->
+    <script src="http://cdn.staticfile.org/less.js/1.7.3/less.min.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+<h1><%= title %></h1>
+
+<p>Welcome to <%= title %></p>
+</body>
 </html>
