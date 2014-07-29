@@ -1,0 +1,21 @@
+{
+  "name": "MuchYantoo",
+  "version": "0.0.1",
+  "homepage": "http://www.yantoo.net",
+  "authors": [
+    "Victor Wang <icesoar@hotmail.com>"
+  ],
+  "description": "Much of yantoo.net",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

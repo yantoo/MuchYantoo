@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html yt-app="yantoo.much.home">
 <head>
     <title><%= title %></title>
 
     <!-- build:css /styles/style.min.css -->
-    <link rel='stylesheet/less' href='/styles/style.less'/>
+    <link rel='stylesheet/less' href='/apps/home/styles/home.less'/>
 
     <!-- less engine -->
     <script src="http://cdn.staticfile.org/less.js/1.7.3/less.min.js"></script>
@@ -14,5 +14,14 @@
 <h1><%= title %></h1>
 
 <p>Welcome to <%= title %></p>
+
+<section class="yt-script">
+    <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.13/angular.js"></script>
+    <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.13/angular-animate.js"></script>
+
+    <script src="http://cdn.staticfile.org/coffee-script/1.7.1/coffee-script.min.js"></script>
+    <script type="text/coffeescript" src="/apps/home/scripts/app.coffee"></script>
+    <script type="text/coffeescript" src="/scripts/agLauncher.coffee"></script>
+</section>
 </body>
 </html>
