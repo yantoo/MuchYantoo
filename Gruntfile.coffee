@@ -104,9 +104,17 @@ module.exports = (grunt) ->
       home   :
         files: [
           {
-            dest  : '<%= webTarget.root %>/styles/style.css'
+            dest  : '<%= webTarget.root %>/apps/home/styles/home.css'
             src   : [
-              '<%= webBuild.root %>/styles/style.css'
+              '<%= webBuild.root %>/apps/home/styles/home.css'
+            ]
+            nonull: true
+          }
+          {
+            dest  : '<%= webTarget.root %>/apps/home/scripts/app.js'
+            src   : [
+              '<%= webBuild.root %>/apps/home/scripts/app.js'
+              '<%= webBuild.root %>/scripts/agLauncher.js'
             ]
             nonull: true
           }
