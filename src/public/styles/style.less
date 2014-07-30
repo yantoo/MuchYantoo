@@ -1,8 +1,18 @@
+@import "base";
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: @baseBlackColor;
+  font-family: "Lucida Grande", "Helvetica Neue", Helvetica, Arial,
+  "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei UI",
+  "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  font-size: @baseFontSize;
 }
 
 a {
-  color: #00B7FF;
+  color: @baseLinkColor;
+  text-decoration: none;
+  &:hover {
+    color: @baseLinkHoverColor;
+    text-decoration: none;
+  }
 }

@@ -2,11 +2,13 @@
 
 "use strict";
 
-console.log("env: ", process.env);
-
 var ON_PRODUCTION = process.env.NODE_ENV === 'production';
 var APP_ROOT = process.env.MUCH_APP_ROOT || (ON_PRODUCTION ? '../dist' : '../src');
 var PORT = process.env.MUCH_PORT || 3000;
+
+if (process.env.MUCH_SHOW_ENV) {
+  console.log("env: ", process.env);
+}
 
 console.log("NODE_ENV: ", process.env.NODE_ENV);
 console.log("MUCH_PORT: ", process.env.MUCH_PORT);

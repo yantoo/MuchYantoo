@@ -3,6 +3,8 @@
 <head>
     <title><%= title %></title>
 
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.2.0/css/bootstrap.css"/>
+
     <!-- build:css /styles/style.min.css -->
     <link rel='stylesheet/less' href='/apps/home/styles/home.less'/>
 
@@ -11,11 +13,95 @@
     <!-- endbuild -->
 </head>
 <body>
-<h1><%= title %></h1>
+<header class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Yantoo.net
+            </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#yt-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
 
-<p>Welcome to <%= title %></p>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="yt-navbar-collapse">
+            <!--
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Sign In</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</header>
 
+<section class="container">
+    <div class="row jumbotron">
+        <h1><%= title %></h1>
+
+        <p>Welcome to <%= title %></p>
+    </div>
+
+    <hr/>
+
+    <div class="row content">
+        <div class="col-sm-6 col-md-4 col-md-push-2">
+            <div class="row">
+                <h4>Items</h4>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.yantoo.net">www.yantoo.net</a></li>
+                    <li><a href="http://blog.yantoo.net">blog.yantoo.net</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="row footer-top">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6 col-md-4 col-md-push-2">
+                <div class="row">
+                    <h4>About</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="http://www.yantoo.net">www.yantoo.net</a></li>
+                        <li><a href="http://blog.yantoo.net">blog.yantoo.net</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row footer-bottom">
+            <ul class="list-inline text-center">
+                <li><a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备14031419号-1</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 <section class="yt-script">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.2.0/js/bootstrap.js"></script>
     <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.13/angular.js"></script>
     <script src="http://cdn.staticfile.org/angular.js/1.3.0-beta.13/angular-animate.js"></script>
 
