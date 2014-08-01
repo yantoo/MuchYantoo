@@ -1,6 +1,6 @@
 "use strict"
 
-loadModels = require '../charger/sqzModelLoader'
+loadModels = require '../charge/sqzModelLoader'
 
 ConfDB = GLOBAL.config.database
 

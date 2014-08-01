@@ -3,7 +3,7 @@
 passport = require 'passport'
 WeiboStrategy = require('passport-weibo-2').Strategy
 
-ConfCamus = GLOBAL.config.camus
+Conf = GLOBAL.config
 ConfWeibo = GLOBAL.config.social.weibo
 
 express = require 'express'
@@ -15,6 +15,7 @@ User = models.User
 
 
 retrieveWeiboUser = (wbUserData, callback) ->
+#  console.log 'retrieveWeiboUser', wbUserData, callback
   User.findOrCreate { weibo_id: wbUserData.weibo_id }, wbUserData
   .then (user) ->
     throw Error('weibo_id does not match.') if user.weibo_id isnt wbUserData.weibo_id
@@ -36,7 +37,7 @@ retrieveWeiboUser = (wbUserData, callback) ->
 weiboOptions =
   clientID    : ConfWeibo.appKey
   clientSecret: ConfWeibo.appSecret
-  callbackURL : "http://#{ ConfCamus.host }/auth/weibo/callback"
+  callbackURL : "http://#{ Conf.host }/auth/weibo/callback"
 
 weiboVerify = (accessToken, refreshToken, profile, done) ->
 #  console.log 'weiboVerify >>>'
@@ -69,10 +70,12 @@ passport.deserializeUser (user, done) ->
 
 
 router.get '/', passport.authenticate('weibo'), (req, res) ->
+  console.log 'auth.weibo'
   # The request will be redirected to weibo for authentication, so this
   # function will not be called.
 
 router.get '/callback', passport.authenticate('weibo', failureRedirect: '/login'), (req, res) ->
+  console.log 'auto.weibo.callback'
   # Successful authentication, redirect home.
   res.redirect '/'
 
