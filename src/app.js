@@ -5,21 +5,25 @@ GLOBAL.config = require('../config');
 var express = require('express');
 var path = require('path');
 
-// Middleware
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var compress = require('compression');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
-
 var app = express();
 
 // Support CoffeeScript in runtime for development only.
 if (app.get('env') === 'development') {
   require('coffee-script/register');
 }
+
+// Middleware
+var favicon = require('static-favicon');
+var logger = require('morgan');
+var compress = require('compression');
+var bodyParser = require('body-parser');
+
+var csProvider = require('./middleware/cookie-session-provider')(app.get('env'));
+//var passport = require('passport');
+
+var localsNodeEnv = require('./middleware/connect-locals-node-env');
+var localsVersion = require('./middleware/connect-locals-version');
+
 
 var routes = require('./routes/index');
 
@@ -32,12 +36,18 @@ app.use(compress());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(require('less-middleware')(path.join(__dirname, 'public')));
+
+//app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./middleware/connect-locals-node-env')());
-app.use(require('./middleware/connect-locals-version')());
+app.use(csProvider.cookieParser());
+app.use(csProvider.session());
+
+//app.use(passport.initialize());
+//app.use(passport.session());
+
+app.use(localsNodeEnv());
+app.use(localsVersion());
 
 ///
 app.use(function (req, res, next) {

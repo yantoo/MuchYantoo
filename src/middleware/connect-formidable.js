@@ -3,7 +3,7 @@
 // Copyright (c) 2013 Alex Zlotnik
 // Author: Alex Zlotnik (zlotnika@gmail.com)
 
-var formidable = require('formidable')
+var formidable = require('formidable');
 
 var hasBody = function (req) {
     var encoding = 'transfer-encoding' in req.headers;
@@ -17,7 +17,7 @@ var mime = function (req) {
 };
 
 exports = module.exports = function (options) {
-    options = options || {}
+    options = options || {};
 
     return function (req, res, next) {
         if (req._body) return next();
@@ -36,18 +36,18 @@ exports = module.exports = function (options) {
         req._body = true;
 
         // parse
-        var form = new formidable.IncomingForm()
-        form.uploadDir = options.uploadDir || __dirname + '/tmp'
-        form.keepExtensions = options.keepExtensions || true
+        var form = new formidable.IncomingForm();
+        form.uploadDir = options.uploadDir || __dirname + '/tmp';
+        form.keepExtensions = options.keepExtensions || true;
 
         form.parse(req, function (err, fields, files) {
             if (err) return next(err);
 
-            req.body = fields
-            req.files = files
+            req.body = fields;
+            req.files = files;
 
-            next()
-        })
+            next();
+        });
 
     }
-}
+};
