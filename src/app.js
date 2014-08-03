@@ -18,7 +18,7 @@ var logger = require('morgan');
 var compress = require('compression');
 var bodyParser = require('body-parser');
 
-var csProvider = require('./middleware/cookie-session-provider')(app.get('env'));
+var csProvider = require('./middleware/cookie-session-provider');
 var passport = require('passport');
 
 var localsNodeEnv = require('./middleware/connect-locals-node-env');

@@ -13,28 +13,28 @@ SESSION_SECRET = 'ksOywq7Y1shldg312wefss9CXIHKDSHJirfycb39qfcjksahd'
 
 ConfRedis = GLOBAL.config.session.redis
 
+REDIS_STORE_OPTS =
+  app   : 'Much'
+  host  : ConfRedis.host
+  port  : ConfRedis.port
+  db    : ConfRedis.db
+  prefix: 'mcrs:'
 
-module.exports = (env) ->
-  REDIS_STORE_OPTS =
-    app   : 'Much'
-    host  : ConfRedis.host
-    port  : ConfRedis.port
-    db    : if env is 'production' then 1 else 2
-    prefix: 'mcrs:'
+SESSION_COOKIE_OPTS =
+  path    : '/'
+  httpOnly: true
+  maxAge  : 1000 * 60 * 1200
 
-  SESSION_COOKIE_OPTS =
-    path    : '/'
-    httpOnly: true
-    maxAge  : 1000 * 60 * 1200
+SESSION_OPTS =
+  key              : 'sid'
+  store            : new RedisStore(REDIS_STORE_OPTS)
+  secret           : SESSION_SECRET
+  cookie           : SESSION_COOKIE_OPTS
+  resave           : true
+  saveUninitialized: true
 
-  SESSION_OPTS =
-    key              : 'sid'
-    store            : new RedisStore(REDIS_STORE_OPTS)
-    secret           : SESSION_SECRET
-    cookie           : SESSION_COOKIE_OPTS
-    resave           : true
-    saveUninitialized: true
 
+module.exports =
   cookieParser: ->
     cookieParser(COOKIE_PARSER_SECRET)
   session     : ->

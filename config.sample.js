@@ -11,7 +11,8 @@ module.exports = {
       type : 'redis',
       redis: {
         host: 'localhost',
-        port: 6379
+        port: 6379,
+        db  : 2
       }
     },
     database: {
@@ -48,7 +49,8 @@ module.exports = {
       type : 'redis',
       redis: {
         host: 'localhost',
-        port: 6379
+        port: 6379,
+        db  : 1
       }
     },
     database: {
