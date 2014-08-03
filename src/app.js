@@ -1,11 +1,11 @@
 "use strict";
 
-GLOBAL.config = require('../config');
-
 var express = require('express');
 var path = require('path');
 
 var app = express();
+
+GLOBAL.config = require('../config')[app.get('env')];
 
 // Support CoffeeScript in runtime for development only.
 if (app.get('env') === 'development') {
@@ -19,7 +19,7 @@ var compress = require('compression');
 var bodyParser = require('body-parser');
 
 var csProvider = require('./middleware/cookie-session-provider')(app.get('env'));
-//var passport = require('passport');
+var passport = require('passport');
 
 var localsNodeEnv = require('./middleware/connect-locals-node-env');
 var localsVersion = require('./middleware/connect-locals-version');
@@ -43,8 +43,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(csProvider.cookieParser());
 app.use(csProvider.session());
 
-//app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(localsNodeEnv());
 app.use(localsVersion());
