@@ -5,20 +5,24 @@
 var ON_PRODUCTION = process.env.NODE_ENV === 'production';
 var APP_ROOT = process.env.MUCH_APP_ROOT || (ON_PRODUCTION ? '../dist' : '../src');
 var PORT = process.env.MUCH_PORT || 3000;
+var HOST = process.env.MUCH_HOST || '127.0.0.1';
 
-if (process.env.MUCH_SHOW_ENV) {
-  console.log("env: ", process.env);
+if (process.env.MUCH_SHOW_CONFIG) {
+    console.log('====================');
+    console.log("ENV: ", process.env);
+    console.log(" - NODE_ENV: ", process.env.NODE_ENV);
+    console.log(" - PORT: ", PORT);
+    console.log(" - HOST: ", HOST);
+    console.log(" - APP_ROOT: ", APP_ROOT);
+    console.log('====================');
 }
-
-console.log("NODE_ENV: ", process.env.NODE_ENV);
-console.log("MUCH_PORT: ", process.env.MUCH_PORT);
-console.log("APP_ROOT: ", APP_ROOT);
 
 var debug = require('debug')('MuchYantoo');
 var app = require(APP_ROOT + '/app');
 
 app.set('port', PORT);
+app.set('host', HOST);
 
-var server = app.listen(app.get('port'), function () {
+var server = app.listen(app.get('port'), app.get('host'), function () {
   debug('Express server listening on port ' + server.address().port);
 });
